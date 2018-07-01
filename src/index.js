@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import "setimmediate";
-import buffer from "buffer";
-window.Buffer = buffer.Buffer;
+import "./polyfill";
 
 import sass from "sass";
 
@@ -18,7 +15,7 @@ class Darter extends React.Component {
   componentDidMount() {
     this.sync();
   }
-  handleChange = e => {
+  handleChange(e) {
     console.log(e.target.value);
     this.setState(
       {
@@ -28,7 +25,7 @@ class Darter extends React.Component {
         this.sync();
       }
     );
-  };
+  }
   sync() {
     try {
       const css = sass
@@ -46,7 +43,10 @@ class Darter extends React.Component {
   render() {
     return (
       <div>
-        <textarea onChange={this.handleChange} value={this.state.scss} />
+        <textarea
+          onChange={e => this.handleChange(e)}
+          value={this.state.scss}
+        />
         <pre>
           <code>{this.state.css}</code>
         </pre>

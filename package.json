@@ -16,8 +16,6 @@
   "devDependencies": {},
   "scripts": {
     "start": "parcel serve",
-    "build": "parcel build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "parcel build"
   }
 }

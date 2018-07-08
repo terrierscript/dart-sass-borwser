@@ -17,6 +17,7 @@
     "setimmediate": "1.0.5",
     "webpack": "^4.14.0",
     "webpack-command": "^0.3.1",
+    "webpack-serve": "^1.0.4",
     "wepback": "^1.0.0"
   },
   "devDependencies": {},

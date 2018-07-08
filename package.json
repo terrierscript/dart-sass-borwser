@@ -15,10 +15,7 @@
     "sass": "^1.9.0",
     "serve": "^9.1.0",
     "setimmediate": "1.0.5",
-    "webpack": "^4.14.0",
-    "webpack-command": "^0.3.1",
-    "webpack-serve": "^1.0.4",
-    "wepback": "^1.0.0"
+    "webpack": "^4.14.0"
   },
   "devDependencies": {},
   "scripts": {

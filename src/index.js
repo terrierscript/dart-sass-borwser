@@ -12,7 +12,9 @@ import ReactDOM from "react-dom";
 const CompileApp = ({ scss, css, handleChange, error }) => {
   return (
     <div>
-      <textarea onChange={e => handleChange(e)} value={scss} />
+      <h1>Input SCSS</h1>
+      <textarea rows={8} onChange={e => handleChange(e)} value={scss} />
+      <h1>Output</h1>
       <pre>
         <code>{css}</code>
       </pre>
@@ -21,14 +23,19 @@ const CompileApp = ({ scss, css, handleChange, error }) => {
   );
 };
 
+const defaultScss = `
+$color: #ff0000;
+.foo { 
+  .baz { 
+    color: $color
+  } 
+}
+`.trim();
+
 class SassCompileContainer extends React.Component {
   constructor() {
     super();
-    this.state = {
-      scss: ".foo { .baz { color: red} }",
-      css: "",
-      error: null
-    };
+    this.state = { scss: defaultScss, css: "", error: null };
   }
   componentDidMount() {
     this.sync();
@@ -70,9 +77,13 @@ class SassCompileContainer extends React.Component {
 }
 
 function App() {
-  return <div className="App">{/* <SassCompileContainer /> */}</div>;
+  return (
+    <div className="App">
+      <SassCompileContainer />
+    </div>
+  );
 }
 
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(<div>aaa</div>, rootElement);
+ReactDOM.render(<App />, rootElement);

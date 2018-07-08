@@ -1,30 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./polyfill";
 
 import sass from "sass";
 
-class Darter extends React.Component {
+const CompileApp = ({ scss, css, handleChange, error }) => {
+  return (
+    <div>
+      <textarea onChange={e => handleChange(e)} value={scss} />
+      <pre>
+        <code>{css}</code>
+      </pre>
+      <div>{error}</div>
+    </div>
+  );
+};
+
+class SassCompileContainer extends React.Component {
   constructor() {
     super();
     this.state = {
       scss: ".foo { .baz { color: red} }",
-      css: ""
+      css: "",
+      error: null
     };
   }
   componentDidMount() {
     this.sync();
   }
   handleChange(e) {
-    console.log(e.target.value);
-    this.setState(
-      {
-        scss: e.target.value
-      },
-      () => {
-        this.sync();
-      }
-    );
+    const newState = {
+      scss: e.target.value
+    };
+    this.setState(newState, () => {
+      this.sync();
+    });
   }
   sync() {
     try {
@@ -37,27 +46,27 @@ class Darter extends React.Component {
         css
       });
     } catch (e) {
-      console.error(e);
+      this.setState({
+        error: e
+      });
     }
   }
   render() {
     return (
-      <div>
-        <textarea
-          onChange={e => this.handleChange(e)}
-          value={this.state.scss}
-        />
-        <pre>
-          <code>{this.state.css}</code>
-        </pre>
-      </div>
+      <CompileApp
+        handleChange={this.handleChange}
+        scss={this.state.scss}
+        css={this.state.css}
+        error={this.state.error}
+      />
     );
   }
 }
+
 function App() {
   return (
     <div className="App">
-      <Darter />
+      <SassCompileContainer />
     </div>
   );
 }

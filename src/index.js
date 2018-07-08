@@ -1,7 +1,13 @@
+import "./polyfill";
+import sass from "sass";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import sass from "sass";
+// const css = sass
+//   .renderSync({
+//     data: ".foo { .bar{ color: red} }"
+//   })
+//   .css.toString();
 
 const CompileApp = ({ scss, css, handleChange, error }) => {
   return (
@@ -64,12 +70,9 @@ class SassCompileContainer extends React.Component {
 }
 
 function App() {
-  return (
-    <div className="App">
-      <SassCompileContainer />
-    </div>
-  );
+  return <div className="App">{/* <SassCompileContainer /> */}</div>;
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+
+ReactDOM.render(<div>aaa</div>, rootElement);
